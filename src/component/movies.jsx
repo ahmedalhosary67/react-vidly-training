@@ -6,21 +6,24 @@ import Pagination from "./common/Pagination";
 class Movies extends Component {
   state = {
     Movies: getMovies(),
-    pageSize: 4,
+    currentPage: 1,
+    pageSize: 4
   };
 
   handleDelete = (movie) => {
-    // console.log(movie);
     const Movies = this.state.Movies.filter((m) => m._id !== movie._id);
     this.setState({ Movies });
   };
+  
   handleLike = (movie) => {
     movie.liked = !movie.liked;
     this.setState(this.state.Movies);
   };
+
   handlePage = (page) => {
-    console.log(page);
+    this.setState({ currentPage: page })
   };
+
   // handleLike = (movie) => {
   //     const Movies = [...this.state.Movies];
   //     const index = Movies.indexOf(movie);
@@ -30,6 +33,7 @@ class Movies extends Component {
   // }
   render() {
       const {length: count} = this.state.Movies;
+      const {pageSize, currentPage} = this.state;
     if (count === 0)
       return <p>There are no movie in database</p>;
 
@@ -74,7 +78,8 @@ class Movies extends Component {
         </table>
         <Pagination
           itemCount={count}
-          pageSize={this.state.pageSize}
+          pageSize={pageSize}
+          currentPage={currentPage}
           onChange={this.handlePage}
         />
       </React.Fragment>
