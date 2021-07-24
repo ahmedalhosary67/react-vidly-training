@@ -1,11 +1,11 @@
 import './App.css';
-import Pagination from './component/common/Pagination';
+// import Filter from './component/common/filter';
 import Movies from './component/movies';
 
 function App() {
   return (
     <main className="container">
-      <Movies />
+          <Movies /> 
       
     </main>
   );
