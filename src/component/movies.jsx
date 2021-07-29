@@ -44,6 +44,27 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
+  getPagesData = () => {
+    const {
+      pageSize,
+      currentPage,
+      selectedGenre,
+      sortColumn,
+      Movies: allMovies,
+    } = this.state;
+
+    const filtered =
+      selectedGenre && selectedGenre._id
+        ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
+        : allMovies;
+
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+
+    const Movies = paginate(sorted, currentPage, pageSize);
+
+    return { totalCount: filtered.length, data: Movies };
+  };
+
   // handleLike = (movie) => {
   //     const Movies = [...this.state.Movies];
   //     const index = Movies.indexOf(movie);
@@ -58,20 +79,12 @@ class Movies extends Component {
       currentPage,
       selectedGenre,
       sortColumn,
-      Movies: allMovies,
       genres,
     } = this.state;
 
     if (count === 0) <p>There are no movie in database</p>;
 
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
-        : allMovies;
-
-    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-
-    const Movies = paginate(sorted, currentPage, pageSize);
+    const { totalCount, data: Movies } = this.getPagesData();
 
     return (
       // <React.Fragment>
@@ -84,7 +97,7 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <p>Showing {filtered.length} movies in database</p>
+          <p>Showing {totalCount} movies in database</p>
           <MoviesTable
             Movies={Movies}
             onLiked={this.handleLike}
@@ -93,7 +106,7 @@ class Movies extends Component {
             onDelete={this.handleDelete}
           />
           <Pagination
-            itemCount={filtered.length}
+            itemCount={totalCount}
             pageSize={pageSize}
             currentPage={currentPage}
             onChange={this.handlePage}
