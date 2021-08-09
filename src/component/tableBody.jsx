@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 
 class TableBody extends Component {
@@ -16,11 +17,21 @@ class TableBody extends Component {
       <tbody>
         {data.map((item) => (
           <tr key={item._id}>
-            {columns.map((column) => (
-              <td key={this.creatKey(item, column)}>
-                {this.renderCell(item, column)}
-              </td>
-            ))}
+            {columns.map((column) => {
+              if (column.path === "title") {
+                return (
+                  <td key={this.creatKey(item, column)}>
+                    <Link to={() => "/movieForm/" + item.title + "/" + item.genre.name}>{this.renderCell(item, column)}</Link>
+                  </td>
+                );
+              } else {
+                return (
+                  <td key={this.creatKey(item, column)}>
+                    {this.renderCell(item, column)}
+                  </td>
+                );
+              }
+            })}
           </tr>
         ))}
       </tbody>

@@ -44,6 +44,10 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
+  handleAddMovie = () => {
+    return null;
+  }
+
   getPagesData = () => {
     const {
       pageSize,
@@ -97,6 +101,7 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
+          <button className="btn btn-danger py-1 px-2 m-2" onClick={this.handleAddMovie()}>New Movie</button>
           <p>Showing {totalCount} movies in database</p>
           <MoviesTable
             Movies={Movies}

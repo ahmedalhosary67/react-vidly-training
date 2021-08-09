@@ -1,14 +1,34 @@
 import './App.css';
-// import Filter from './component/common/filter';
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Customers from './component/customers';
 import Movies from './component/movies';
+import NavBar from './component/navBar';
+import Rentals from './component/rentals';
+import NotFound from './component/notFound';
+import MovieForm from './component/movieForm';
+import loginForm from './component/login';
 
-function App() {
+const App = () => {
   return (
-    <main className="container">
-          <Movies /> 
+    <main>
+      <NavBar  />
+      <div className="container">
+        <Switch>
+          <Route path="/login" component={loginForm} />
+          <Route path="/customers" component={Customers} />
+          <Route path="/rentals" component={Rentals} />
+          <Route path="/movieForm/:title/:genreName" component={MovieForm} />
+          <Route path="/not-Found" component={NotFound} />
+          <Route path="/movies" component={Movies} />
+          <Redirect from="/" exact to="/movies" />
+          <Redirect to="/not-Found" />
+        </Switch>
+
+      </div>
       
     </main>
   );
 }
-
+ 
 export default App;
