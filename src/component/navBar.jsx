@@ -8,12 +8,12 @@ const NavBar = () => {
   //   {path: '/rentals', name: 'Rentals' }
   // ]
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <span className="navbar-brand">Vidly</span>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div className="collapse navbar-collapse" id="navbarNav">
         <div className="navbar-nav mr-auto">
         <NavLink className='nav-item nav-link' to="/movies" >Movies</NavLink>
         <NavLink className='nav-item nav-link' to="/customers">Customers</NavLink>

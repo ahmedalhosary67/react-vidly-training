@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import MoviesTable from "./moviesTable";
@@ -101,7 +102,7 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <button className="btn btn-danger py-1 px-2 m-2" onClick={this.handleAddMovie()}>New Movie</button>
+          <Link className="btn btn-danger py-1 px-2 m-2" onClick={this.handleAddMovie()} to="/movieForm" >New Movie</Link>
           <p>Showing {totalCount} movies in database</p>
           <MoviesTable
             Movies={Movies}

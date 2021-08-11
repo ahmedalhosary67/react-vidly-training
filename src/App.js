@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/login" component={loginForm} />
           <Route path="/customers" component={Customers} />
           <Route path="/rentals" component={Rentals} />
-          <Route path="/movieForm/:title/:genreName" component={MovieForm} />
+          <Route path="/movieForm/:title?/:genreName?" component={MovieForm} />
           <Route path="/not-Found" component={NotFound} />
           <Route path="/movies" component={Movies} />
           <Redirect from="/" exact to="/movies" />

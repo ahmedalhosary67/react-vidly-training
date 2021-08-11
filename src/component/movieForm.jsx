@@ -6,32 +6,32 @@ const MovieForm = ({ match, history }) => {
     <div>
       <h1>Movie Form {match.params.title} </h1>
       <form>
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="exampleFormControlInput1">Title</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput1"
             placeholder="Title"
             value={match.params.title}
           ></input>
         </div>
-        <div class="form-group">
-          <label class="mr-sm-2" htmlFor="inlineFormCustomSelect">
+        <div className="form-group">
+          <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">
             Genre
           </label>
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
             <option selected>{match.params.genreName}</option>
             <option value="Action">Action</option>
             <option value="Comedy">Comedy</option>
             <option value="Thriller">Thriller</option>
           </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="exampleFormControlInput2">No</label>
           <input
             type="number"
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput2"
             placeholder="Number"
             value={match.params.title}
