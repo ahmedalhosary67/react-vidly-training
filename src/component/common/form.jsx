@@ -19,7 +19,7 @@ class Form extends Component {
     for (let item of error.details) errors[item.path[0]] = item.message;
 
     return errors;
-  };
+  }; 
 
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
@@ -57,12 +57,13 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, label) {
+  renderInput(name, label, type = "text") {
     const { data, errors } = this.state;
     return (
       <Input
         name={name}
         label={label}
+        type={type}
         value={data[name]}
         onChange={this.handleChange}
         error={errors[name]}

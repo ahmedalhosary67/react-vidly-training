@@ -19,6 +19,7 @@ const NavBar = () => {
         <NavLink className='nav-item nav-link' to="/customers">Customers</NavLink>
         <NavLink className='nav-item nav-link' to="/rentals">Rentals</NavLink>
         <NavLink className='nav-item nav-link' to="/login">login</NavLink>
+        <NavLink className='nav-item nav-link' to="/register">Register</NavLink>
           {/* {pages.map(page => <li className='nav-item'>
             <Link className="nav-link" to={page.path}>
               {page.name}
