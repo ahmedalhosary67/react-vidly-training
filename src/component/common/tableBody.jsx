@@ -23,7 +23,7 @@ class TableBody extends Component {
               if (column.path === "title") {
                 return (
                   <td key={this.creatKey(item, column)}>
-                    <Link to={() => "/movieForm/" + item._id }>{this.renderCell(item, column)}</Link>
+                    <Link to={() => "/movieForm/" + item._id  }>{this.renderCell(item, column)}</Link>
                   </td>
                 );
               } else {

@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/register" component={Register} />
           <Route path="/customers" component={Customers} />
           <Route path="/rentals" component={Rentals} />
-          <Route path="/movieForm/:id" component={MovieForm} />
+          <Route path="/movieForm/:id?" component={MovieForm} />
           <Route path="/not-Found" component={NotFound} />
           <Route path="/movies" component={Movies} />
           <Redirect from="/" exact to="/movies" />
