@@ -11,6 +11,8 @@ class TableBody extends Component {
   creatKey = (item, column) => {
     return item._id + (column.path || column.key);
   };
+
+  
   render() {
     const { data, columns } = this.props;
     return (
@@ -21,7 +23,7 @@ class TableBody extends Component {
               if (column.path === "title") {
                 return (
                   <td key={this.creatKey(item, column)}>
-                    <Link to={() => "/movieForm/" + item.title + "/" + item.genre.name}>{this.renderCell(item, column)}</Link>
+                    <Link to={() => "/movieForm/" + item._id }>{this.renderCell(item, column)}</Link>
                   </td>
                 );
               } else {

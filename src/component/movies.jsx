@@ -102,7 +102,7 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <Link className="btn btn-danger py-1 px-2 m-2" onClick={this.handleAddMovie()} to="/movieForm" >New Movie</Link>
+          <Link className="btn btn-danger py-1 px-2 m-2" onClick={this.handleAddMovie()} to="/movieForm/new" >New Movie</Link>
           <p>Showing {totalCount} movies in database</p>
           <MoviesTable
             Movies={Movies}
