@@ -73,6 +73,7 @@ export function getMovies() {
 }
 
 export function getMovie(id) {
+  console.log(movies.filter(m => m._id ));
   return movies.find(m => m._id === id);
 }
 
@@ -84,7 +85,7 @@ export function saveMovie(movie) {
   movieInDb.dailyRentalRate = movie.dailyRentalRate;
 
   if (!movieInDb._id) {
-    movieInDb._id = Date.now();
+    movieInDb._id = (Date.now()).toString();
     movies.push(movieInDb);
   }
 

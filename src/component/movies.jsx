@@ -7,11 +7,15 @@ import Pagination from "./common/Pagination";
 import ListGroup from "./common/listGroup";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
+import Input from "./common/input";
+import SelectBox from "./common/searchBox";
 
 class Movies extends Component {
   state = {
     Movies: [],
     genres: [],
+    searchQuery: "",
+    selectedGenre: null,
     currentPage: 1,
     pageSize: 4,
     sortColumn: { path: "title", order: "asc" },
@@ -24,7 +28,10 @@ class Movies extends Component {
   }
 
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre, currentPage: 1 });
+    this.setState({ selectedGenre: genre, searchQuery: "", currentPage: 1 });
+  };
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
   };
 
   handleDelete = (movie) => {
@@ -47,21 +54,27 @@ class Movies extends Component {
 
   handleAddMovie = () => {
     return null;
-  }
+  };
 
   getPagesData = () => {
     const {
       pageSize,
       currentPage,
       selectedGenre,
+      searchQuery,
       sortColumn,
       Movies: allMovies,
     } = this.state;
 
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
-        : allMovies;
+    let filtered = allMovies;
+    if (searchQuery)
+      filtered = allMovies.filter((m) =>
+      // console.log( m.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      m.title.toLowerCase().includes(searchQuery.toLowerCase())
+        // m.title.toLowerCase().startswith(searchQuery.toLowerCase())
+      );
+    else if (selectedGenre && selectedGenre._id)
+      filtered = allMovies.filter((m) => m.genre._id === selectedGenre._id);
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
@@ -85,6 +98,7 @@ class Movies extends Component {
       selectedGenre,
       sortColumn,
       genres,
+      searchQuery,
     } = this.state;
 
     if (count === 0) <p>There are no movie in database</p>;
@@ -102,8 +116,15 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <Link className="btn btn-danger py-1 px-2 m-2" onClick={this.handleAddMovie()} to="/movieForm/new" >New Movie</Link>
+          <Link
+            className="btn btn-danger py-1 px-2 m-2"
+            onClick={this.handleAddMovie()}
+            to="/movieForm/new"
+          >
+            New Movie
+          </Link>
           <p>Showing {totalCount} movies in database</p>
+          <SelectBox value={searchQuery} onChange={this.handleSearch} />
           <MoviesTable
             Movies={Movies}
             onLiked={this.handleLike}
