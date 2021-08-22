@@ -40,7 +40,7 @@ class Movies extends Component {
   };
 
   handleLike = (movie) => {
-    movie.liked = !movie.liked;
+    movie.liked = !movie.liked; 
     this.setState(this.state.Movies);
   };
 
