@@ -71,6 +71,7 @@ class MovieForm extends Form {
   }
 }
 
+export default MovieForm;
 
 // const MovieForm = ({ match, history }) => {
 //   return (
@@ -117,5 +118,3 @@ class MovieForm extends Form {
 //     </div>
 //   );
 // };
-
-export default MovieForm;
